@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let dust = 20;
+        if(dust>0 && dust<=30){
+            document.write("좋음");
+        } else if(dust>30 && dust<=80){
+            document.write("보통");
+        } else if(dust>80 && dust<=150){
+            document.write("나쁨");
+        } else {
+            document.write("매우나쁨");
+        }
+
+        document.write("<hr>");
+        let num1 = 5;
+        if(num1%2 == 0){
+            document.write(num1+"는(은) 짝수입니다.");
+        } else {
+            document.write(num1+"는(은) 홀수입니다.");
+        }
+
+        document.write("<hr>");
+        let num2 = 10;
+        if(num2<0){
+            document.write(num2+"는(은) 음수입니다.")
+        } else if(num2=0){
+            document.write(num2+"는(은) 0입니다.")
+        } else {
+            document.write(num2+"는(은) 양수입니다.")
+        }
+
+        document.write("<hr>");
+        let price = 80000;
+        let sale_price;
+        if(price>=100000){
+            sale_price = 0.8*price;
+            document.write("원가 : "+price+"\n");
+            document.write("할인된 가격 : "+sale_price);
+        } else if(price>=50000){
+            sale_price = 0.9*price;
+            document.write("원가 : "+price+"\n");
+            document.write("할인된 가격 : "+sale_price);
+        } else {
+            sale_price = 0.95*price;
+            document.write("원가 : "+price+"\n");
+            document.write("할인된 가격 : "+sale_price);
+        }
+
+        // 1. 변수 : mathScore
+        // 2. 조건식/참 :
+        //      90점 이상/A
+        //      80점 이상/B
+        //      70점 이상/C
+        //      이하의 점수/F
+        document.write("<hr>");
+        let mathScore = 75;
+        if(mathScore>=90){
+            document.write("A");
+        } else if(mathScore<90 && mathScore>=80){
+            document.write("B");
+        } else if(mathScore<80 && mathScore>=70){
+            document.write("C");
+        } else {
+            document.write("F");
+        }
+    </script>
+</body>
+</html>
