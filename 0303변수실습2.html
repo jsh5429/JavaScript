@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>현재 나이는 <span id="age"></span>세입니다.</h1>
+    <script>
+        // 뒤에 적어둔 1980은 실행될 때 미리 적혀지게된다.
+        // 앞의 메시지는 필수 작성 사항이 아니다.
+        let birth=prompt("현재 생년을 입력해주세요", "1980");
+        // prompt로 받아온 값은 문자열이다. 계산할 때 주의
+        let age = 2023-birth+1;
+        document.getElementById('age').innerHTML
+        = `${age}`;
+        // 4. console.log를 이용해서 isNaN출력
+        console.log(isNaN(age));
+    </script>
+</body>
+</html>

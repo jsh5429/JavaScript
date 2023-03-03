@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--값을 출력할 html 태그 필요-->
+    <h1><span id="greeting">00</span>님 오신것을 환영합니다.</h1>
+    <p>홈페이지에 방문하신 것을 환영합니다.</p>
+    <!--자바스크립트 공간-->
+    <script>
+        // 1. prompt 값을 입력받음
+        let nick_name=prompt("닉네임을 입력해주세요");
+        // 2. 입력받는 값은 h1태그 id를 찾아서 출력
+        // 태그를 찾아줄 때는 id로 찾는 것은 getElementById   
+        document.getElementById('greeting').innerHTML
+        =`${nick_name}`;
+        // 태그를 찾기 위한 다른 방법
+        // css의 선택자를 통해서 찾을 수 있다.
+        // id="greeting"의 형제인 바로 뒤에 있는 p 태그 찾기
+        // 나는 h1에 id를 안넣어서 적용이 안됨.ㅋㅋ
+        document.querySelector("#greeting~p").innerHTML
+        = "querySelector를 이용"
+    </script>
+
+</body>
+</html>
