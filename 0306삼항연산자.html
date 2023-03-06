@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 단항 : ++, -- 하나의 변수에서 쓸 수 있는 연산자
+        // 삼항 : 세 개의 값을 이용해서 쓸 수 있는 연산자
+        
+        // 삼항연산자 : 조건식과 참일 때와 거짓일 때의 값을 이용한 계산식
+        // 삼항 연산자는 연산자이기 때문에 계산하고 그 결과를 출력함
+        let result = true ? "참입니다." : "거짓입니다.";
+        document.write(result);
+
+        let money = 1000;
+        console.log(money>=1500 ? "버스를 탈 수 있다." 
+                                    : "버스를 탈 수 없다.");
+
+        // 삼항 연산자 연습
+        // 나이가 19세 이상이면 성인입니다.
+        // 미만이면 학생입니다를 document.write로 출력하세요
+        let age = 24;
+        let result2 = (age>=19) ? "성인입니다." : "학생입니다.";
+        document.write("<p>"+result2+"</p>");
+
+        // 삼항연산자 활용
+        // 변수 초기화
+        let name = prompt("이름을 적어주세요");
+        // 값이 있으면 원래의 name 값을 두면 되고 없으면
+        // 뒤의 초기화 값을 넣는다. null값을 넣어도 마찬가지다.
+        // 프롬프트로 값을 가져올 때 값이 입력되지 않아 이런식으로
+        // 변수를 초기화해 내용을 출력할 수도 있다.
+        // 리액트에서 if문을 쓸 수 없을때 삼항연산자를 많이 쓴다.
+        name = name ? name : "이름이 없습니다." ;
+        document.write(`<p>${name}</p>`);
+        // 더 짧은 코듣가 있지만 잘 쓰진 않는다.
+        let a = 1;
+        let b = 2;
+        let max = a>b ? a : b;
+        document.write(`<p>${max}가 더 높다.</p>`)
+
+        
+
+    </script>
+</body>
+</html>
