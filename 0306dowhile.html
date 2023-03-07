@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* do-while문 */
+        // 반드시 한번은 실행하는 반복문
+        // do {반복내용} while(조건문)
+        
+        // do while 문을 이용하여 세번 반복
+        let num = 0; // 초기값
+        do{
+            document.write(`<p>세 번 출력이 됩니다.</p>`);
+            num++;
+        } while(num<3)
+
+        // prompt로 값을 한번은 입력받는 do while
+        let password = "";
+        do{
+            // let password로 초기화해준 값은
+            // prompt의 값이 할당되엇 사용되지 않는다.
+            password = prompt("비밀번호를 입력하세요.");
+        } while(password != "000")
+        document.write("<p>비밀번호를 제대로 입력했습니다.</p>");
+    </script>
+</body>
+</html>

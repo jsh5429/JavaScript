@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let input;
+        let input_sum=0;
+        while(input != 0){
+            input = Number(prompt("숫자를 입력하세요"));
+            if(isNaN(input) == true){
+                input = null;
+            } else{
+                input_sum += input;
+            }
+        }
+        document.write(`<p>총합 = ${input_sum}</p>`);
+    </script>
+</body>
+</html>
