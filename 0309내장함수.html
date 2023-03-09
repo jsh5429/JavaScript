@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 내장함수 : 미리 제공해주고 있는 함수*/
+        // parseInt() : 문자열에서 숫자를 찾아서 숫자로 반환
+        document.write(`<p>${ parseInt("10살")+20 }</p>`);
+        // parseFloat) : 문자열에서 실수를 찾아서 실수로 반환
+        document.write(`<p>${parseFloat("17.5도")+0.3}</p>`);
+        // if문의 조건식으로도 많이 사용한다.
+        document.write(`<p>${isFinite(10.3) }</p>`);
+
+        /* 타이머 함수 : 타이머 함수 안에 넣어준 함수를 시간에 따라 실행*/
+        let timerId = setTimeout(function(){
+            document.write(`<p>1초가 지났습니다.</p>`);
+        }, 1000);
+
+        // 1초가 지난 뒤에 setTimeout 안의 출력문이 실행되면서
+        // 다음에 작성된 내용이어도 1초뒤에 사라진다.
+        document.write("setTimeout 다음에 작성된 내용입니다.");
+
+        // 1초가 지났습니다. 라고 출력하는 타이머함수 중지
+        // timerId를 찾아내 거기에 할당된 타이머 함수를 찾아 중지시킨다.
+        clearTimeout(timerId);
+    </script>
+</body>
+</html>

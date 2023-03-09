@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 함수 선언식은 코드실행흐름에 영향이 없기 때문에
+        * head안의 script로 따로 빼서 작성한다.
+        */
+       // document.write(`${}`); 함수 
+       // 바꾸고자하는 내용 = 변수(매개변수)
+       // 매개변수의 값은 선언할 때 정해지지 않고
+       // 호출할 때 정해진다.
+        function print(string){
+            document.write(`${string}`);
+        }
+        // return 값이 없으면 undefined로 값을 전달한다.
+        // 이때 변수에 담아주지않으면 값은 사라진다.
+        // 3+4와 같은 값을 변수에 담지 않으면 사라짐.
+
+        function dust(x){
+            if(x<=30){
+                return "좋음";
+            } else if (x<=80){
+                return "보통";
+            } else if(x<=150){
+                return "나쁨";
+            } else {
+                return "매우 나쁨";
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>
+        /* 함수를 만들기 전에 확인하는 방법 */
+        // 매개변수 > 변수 = 임의의 값
+        // 실행할 내용 > 변수의 값을 실행
+        let string = "안녕하세요";
+        document.write(`<p>${string}</p>`);
+        // 위의 내용으로 만든 함수 호출
+        print("반갑습니다.");
+
+        // 미세먼지 판멸 조건문 > 함수로 담아서 만들기
+        // 조건 : x<=30이면 좋음 x<=80이면 보통 x<=150 나쁨
+        // 그외(else) 매우나쁨
+
+        // 위의 내용으로 만든 함수 호출
+        // 함수 안에서 print 또는 documetn.write로 호출하지 않고
+        // return으로 자료형을 주는 것은 값을 받아와서
+        // 수정 또는 계산, 조합하기 위함.
+        print("<br>오늘 미세먼지는 " + dust(40)+"입니다.");
+
+        // 구구단의 단을 입력했을 때 그 단을 출력하는 함수
+        // 함수에서도 결과 바로 출력을 시킨다(return을 쓰지않는다는 뜻)
+        function googoo(x){
+            for(let i=1; i<10; i++){
+                print(`<p>${x} x ${i} = ${x*i}</p>`);
+            }
+        }
+        // 위의 내용으로 만든 함수 호출
+        // print(), document.write()에 넣어서 출력하지 않는 이유
+        // googoo라는 함수에서 return을 사용하지 않았기 때문에.
+        googoo(2);
+        googoo(15);
+        // googoo 함수 안의 코드 자체를 출력한다.
+        document.write(googoo);
+    </script>
+</body>
+</html>

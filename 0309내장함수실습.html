@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // prompt 자체를 parseInt() 안에 넣어도 된다.
+        let age = parseInt(prompt("현재 나이를 입력하세요."));
+        while(isNaN(age)==true){
+            alert("나이가 아닙니다.");
+            age = parseInt(prompt("현재 나이를 입력하세요."));
+        }          
+        let year = 2023 + 1 - age;
+        document.write(`<p>태어난 년도 : ${year}년</p>`);
+        
+    </script>
+</body>
+</html>
