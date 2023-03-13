@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* Array */
+        // sort()
+        let numArray = [3,6,7,2,7,3,1];
+        document.write(`<p>${numArray}</p>`);
+        numArray.sort();
+        document.write(`<p>${numArray}</p>`);
+
+        // pop() : 배열의 마지막 요소를 제거하고 return 값으로 전달
+        let flowerArray = ["튤립", "장미", "국화"];
+        console.log(flowerArray.pop());
+        console.log(flowerArray.pop());
+        console.log(flowerArray.pop());
+
+        // 정렬하는 함수
+        // : a와 b의 값을 비교해서 큰 값을 나중에 출력
+        // 1,2,3,4 순서로 출력
+        function compare(a,b){
+            if(a>b){
+                return 1; // 나중에 출력
+            } else if(a<b){
+                return -1; // 먼저 출력
+            } else {
+                return 0; // 동일
+            }
+        }
+
+        /* String 문자열 */
+        // String은 배열과 유사하다.
+        let string = "홍길동";
+        // charAt() : 0~n
+        document.write(`<p>${string.charAt(1)}</p>`);
+        document.write(`<p>${string[1]}</p>`);
+
+        // match() : 지정된 문자와 동일한 문자를 찾는다.
+        // 값이 있을 때는 그 값을 return 하고 없으면 null을 return
+        document.write(`<p>${string.match("홍")}</p>`);
+        document.write(`<p>${string.match("홍홍")}</p>`);
+        document.write(`<p>${string.match("향")}</p>`);
+
+        // search() : 지정된 문자와 동일한 문자 찾기
+        // 값이 있을 때는 그 인덱스값을 return
+        // 값이 없을 때는 -1을 return
+        document.write(`<p>${string.search("홍")}</p>`);
+        document.write(`<p>${string.search("길")}</p>`);
+        document.write(`<p>${string.search("동")}</p>`);
+
+        // replace(a,b) : a의 값을 b로 대체
+        // string값은 그대로 두고 결과값만 바꿔서 출력
+        string.replace("홍", "김");
+        document.write(`<p>${string}</p>`);
+        document.write(`<p>${string.replace("홍", "김")}</p>`);
+
+        // split() : 문자열을 자르는 메소드
+        // return 값으로 배열을 돌려준다.
+        document.write(`<p>${string.split("길")}</p>`);
+        document.write(`<p>${Array.isArray(string.split("길"))}</p>`);
+
+        // string 객체 실습
+        let name= "홍길동";
+        let centerChar = name.charAt(1);
+        let replaceName = name.replaceAll(centerChar, "*");
+        document.write(`<p>${replaceName}</p>`);
+        
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 생성자 함수 이름과 매개변수
+        // 동물병원진료차트
+        function AnimalChart(name, kind, age){
+            this.name = name;
+            this.kind = kind;
+            this.age = age;
+            this.sickness="";
+            this.condition="";
+
+            // 메소드
+            // receive 병명과 상태를 기록
+            this.receive = function(sickness, condition){
+                this.sickness = sickness;
+                this.condition = condition;
+                return this.sickness+"/"+this.condition;
+            }
+            // 이름, 동물의 종류, 나이, 병명, 상태 출력
+            // 메소드(함수)를 제외하고 출력
+            // 전체 출력 : for in
+            // (조건)typeof 자료형을 확인하고 출력
+            this.confirm = function(){
+                // 객체 안에서 객체를 접근하려면 this!
+                let allString ="";
+                for(let i in this){                    
+                    // 생성자 함수이기 때문에 this 통해서 생성될
+                    // 객체에 임의로 접근한다로 작성.
+                    // 메소드만 제외한 속성을 출력
+                    if(typeof this[i] !="function"){
+                        console.log(this[i]);
+                        allString = this[i] +", "+allString;
+                    }
+                }
+                return allString;                
+            }
+        }
+        let first = new AnimalChart("홍길동", "강아지", 1);
+        let second = new AnimalChart("성춘향", "강아지", 2);
+        first.receive("감기", "나쁨");
+        document.write(first.confirm());
+
+        // 진료차트와 같이 동일한 형태의 내용의 객체를 많이
+        // 사용할 떄는 배열 안에 넣어서 작성할 수도 있다.
+        let animalChartList = [
+            new AnimalChart("홍길동", "강아지", 1),
+            new AnimalChart("성춘향", "고양이", 3),
+        ];
+
+    </script>
+</body>
+</html>
