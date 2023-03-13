@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 객체 : 속성값(변수)과 메소드(함수)를 가지고 있는
+        자료형(변수에 저장해서 사용한다.)
+        */
+        // document의 자료형 : 객체(object) 
+        document.write(typeof(document));
+
+        // 객체 생성 후 변수에 할당 (자료형이기 때문에)
+        let puppy = {
+            // 속성
+            name : "초코",
+            // 메소드
+            eat : function() {
+                document.write(`<p>${this.name}가 밥을 먹습니다.</p>`);
+            }
+        };
+        puppy.eat();
+        document.write(`${puppy.name}`);
+        // 함수는 안의 내용이 실행되고 나면 return 값이
+        // undefined이다. 그래서 document.write에 넣어서
+        // 메소드를 실행하면 undefined가 화면에 출력된다.
+        // document.write(`${puppy.eat()}`);
+
+        // 리터럴 표기를 이용한 객체 생성 실습
+        let person = {
+            name : "홍길동",
+            address : "부산",
+            // 메소드
+            intro : function() {
+                return `${this.name}입니다. ${this.address}에 거주중입니다.`;
+            }
+        }
+
+        // 리터럴 표기를 이용한 객체 생성 실습2
+        let myCookie = {
+            shape : "원",
+            flavor : "초코",
+            intro : function() {
+                return `${this.shape} 모양의 ${this.flavor} 맛입니다.`;
+            },
+            count : function(number){
+                return `${number}개 있습니다.`;
+            }
+        }
+        myCookie.intro();
+
+        /* 생성자 함수 : 값을 받아와서 객체를 만드는 함수.*/
+        // 생성자 함수는 구분을 위해 첫 글자를 대문자로
+        function Dog(color, name, age){
+            // 객체의 속성 할당
+            this.name = name;
+            this.age = age;
+            this.color = color;
+            // 메소드 작성
+            this.eat = function(){
+                return `${this.name}는 밥을 먹습니다.`;
+            }
+        }
+
+        let dog1 = new Dog("흰색", "백구" ,1);
+        // 없는 속성에 접근해도 오류가 발생하지 않고
+        // undefined를 출력
+        console.log(dog1.family);
+
+        // 없는 속성에 값을 넣어주면 그 값이 할당되어 사용할 수 있따.
+        dog1.family = "진도개";
+        console.log(dog1.family);
+
+        // 생성자 함수를 이용한 객체의 생성 실습1
+
+        function Student(name, score){
+            this.name = name;
+            this.score = score;
+            this.study = function() {
+                this.score += 10;
+            }
+            this.showScore = function() {
+                return this.score;
+            }
+        }
+        let myStudent = new Student("홍길동", 70);
+        let yourStudent = new Student("성춘향", 80);
+
+        console.log(myStudent.score);
+        myStudent.study();
+        console.log(myStudent.score);
+        myStudent.showScore();
+        
+        function BusCard(money) {
+            this.money = money;
+            this.charge = function(n){
+                this.money += n;
+            }
+            this.takeBus = function(){
+                if (money < 1500){
+                    document.write(`<p>잔액이 부족합니다.</p>`);
+                } else {
+                    this.money -= 1500;
+                }
+            }
+            this.showMoney = function() {
+                return this.money;
+            }
+        }
+        let myBusCard = new BusCard(1500);
+        let yoursBusCard = new BusCard(1000);
+
+        document.write(`<p>${myBusCard.showMoney()}</p>`);
+        myBusCard.charge(1000);
+        document.write(`<p>${myBusCard.showMoney()}</p>`);
+        myBusCard.takeBus();
+        document.write(`<p>${myBusCard.showMoney()}</p>`);
+        
+        yoursBusCard.takeBus();
+
+        // 생성자 함수를 이용한 객체의 생성 실습 3
+        function Message(name, content, time){
+            this.name= name;
+            this.content=content;
+            this.time = time;
+            this.modifyMessage  = function(message){
+                this.content = message;
+            }
+            this.showMessage = function(){
+                document.write(`<p>${this.name}님 께서
+                    ${this.content}를 ${this.time}에
+                    보냈습니다.</p>`)
+            }
+        }
+
+        let myMessage = new Message("홍길동", "반갑습니다.", "0224");
+        let yourMessage = new Message("성춘향", "안녕하세요", "0224");
+        
+        // 생성자 함수로 만든 객체는 객체의 메소드에
+        // 접근 가능하다.
+        let num = Number(123);
+        // 어떤 메소드인지는 모르지만 메소드에 접근해서
+        // 쓸 수 있다.
+        num.toExponential();
+
+        // 가장 많이 사용한 document의 메소드
+        document.write("<p>객체에 들어가 있는 함수를 메소드라고 한다.</p>");
+
+        // 객체 - 자료형 중의 하나, 속성값, 메소드를 가진다.
+        // this - 자기 자신을 호출하는 키워드
+
+        // delete 연습 : 객체의 속성/메소드 삭제
+        delete myMessage.name;
+        // name 속성이 삭제되어 undefined로 출력된다.
+        console.log(myMessage.showMessage());
+
+        // 객체 안의 속성/메소드 반복
+        // for ... in
+        for(let i in puppy){
+            console.log(i+": "+puppy[i]);
+        }
+
+        // for ... in 루프 실습
+        // 앞서 작성한 youtMessage의 속성과
+        // 메소드의 이름을 출력한다.
+        for(let i in yourMessage){
+            document.write(`<p>${i} : ${yourMessage[i]}</p>`);
+        }
+        document.write("<hr>");                                                                                                                            
+        for(let i in myBusCard){
+            document.write(`<p>${myBusCard[i]}</p>`);
+        }
+    </script>
+    
+</body>
+</html>

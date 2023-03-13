@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        for (let i = 1; i<=10; i++){
+            document.write(`<p>${i}</p>`);
+        }
+        document.write("<hr>");
+
+        let numArray=[1,2,3,4];
+        for(i of numArray){
+            document.write(`<p>${i}</p>`);
+        }
+        document.write("<hr>");
+
+        let flowerArray = ["해바라기", '튤립', "장미"];
+        for(i in flowerArray){
+            document.write(`<p>${flowerArray[i]}</p>`);
+        }
+        document.write("<hr>");
+
+        for(let i=1; i<10; i++){
+            if(6%i==0){
+                document.write(`<p>${i}</p>`);
+            }
+        }
+        document.write("<hr>");
+
+        let test = function(){
+            console.log("테스트 함수입니다.");
+        }
+        test();
+        document.write("<hr>");
+
+        let add = (a, b) => {
+            return a+b;
+        }
+        document.write(`<p>${add(1,2)}</p>`);
+        document.write("<hr>");
+
+        let messageAlert = () => {
+            alert("화살표식 함수로 바꿨습니다.");
+        }
+        messageAlert();
+        document.write("<hr>");
+
+
+        function power(a, b){
+            let result=1;
+            // b==null 이라는 조건식은 적용이 안되네..
+            // b가 true일 경우로 하는게 맞는듯
+            if(b){
+                for(let i=0; i<b; i++){
+                    result *= a;
+                }
+                return result;
+            } else {
+                return a*a;
+            }
+        }
+        document.write(`<p>${power(2,3)}</p>`);
+        document.write("<hr>");
+
+        const myStorage={
+            car : {
+                inside:{
+                    gloveBox : "maps",
+                    passengerSeat : "crumbs"
+                },
+                outside : {
+                    trunk : "jack"
+                }
+            }
+        };
+        document.write(`<p>${myStorage.car.inside.gloveBox}</p>`);
+        document.write("<hr>");
+        
+        const object1 = {
+            name : "Nature of Code",
+            price : "300000원",
+            writer : "다니엘 쉬프만",
+            isbn : 9788968481901,
+            page : 620
+        };
+        document.write(`<p>이름 : ${object1.name}</p>`);
+        document.write(`<p>가격 : ${object1.price}</p>`);
+        document.write(`<p>저자 : ${object1.writer}</p>`);
+        document.write(`<p>ISBN : ${object1.isbn}</p>`);
+        document.write(`<p>페이지 수 : ${object1.page}페이지</p>`);
+        document.write("<hr>");
+
+        function Product(name, pay) {
+            this.name = name;
+            this.pay = pay;
+            this.keep = function(){
+                return `${name}을 보관했습니다.`;
+            }
+            this.getPay= function(){
+                return `${pay}`;
+            }
+        }
+
+        let book = new Product("book", 6000);
+        let pencil = new Product("pencil", 2000);
+        let hat = new Product("hat", 8000);
+
+        document.write(`<p>${book.keep()}</p>`);
+        document.write(`<p>${book.getPay()}</p>`);
+        document.write("<hr>");
+
+        // 생성자 함수 User
+
+        function User(id, money){
+            this.id = id;
+            this.money = money;
+            // 이 지점을 틀렸음!
+            this.buyList = [];
+            this.charge = function(plusMoney){
+                return this.money += plusMoney;
+            }
+            this.buy = function(product){
+                //User의 money에서 product.getPay() ㄱ밧 계싼
+                // this = User
+                this.money -= product.getPay();
+                // product.name의 값을 buyList배열의 메소드인
+                // push()에 추가.
+                // 미리 만들어둔 객체의 메소드나 속성을 사용할 수 있다.
+                this.buyList.push(product.name);
+            }
+        }
+        let harry = new User("harry", 10000);
+    </script>
+</body>
+</html>
