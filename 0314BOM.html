@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* BOM : 브라우저 오브젝트 모델 : 브라우저 객체 모델 */
+        // 브라우저(인터넷창)에 접근하여서
+        // 자바 스크립트로 제어하기 위한 모델
+        // 가장 상위 객체 : window, 접두사를 제외하고 사용
+        // 현재 객체가 window이므로 this로 접근 가능
+
+        // location 객체
+        // 현재 웹페이지에 대한 정보를 가지고 있다.
+        // .reload()를 사용하면 페이지가 새로고침이 된다.
+        // document.write(`<p>${location.href}</p>`);
+
+        // history 객체
+        // 히스토리 정보 저장
+        // length 히스토리 개수 확인
+        // .back(), forward(), go() 메소드로 페이지 이동 가능.
+
+        // 대화상자 : window객체에서 제공해주는 메소드
+
+        // BOM객체 실습 : confirm, navigator
+        // 함수와 메소드를 사용할 때
+        // return 값을 다시 함수의 인수값으로 넣어 사용가능.
+        // 함수 안에 실행함수를 호출해서 사용 가능
+        // 변수에 담지 않고 바로 return 값 사용 가능
+        if(confirm("운영체제를 알려드릴까요?")){
+            document.write(`<p>${navigator.platform}입니다.</p>`);
+        }
+        
+    </script>
+</body>
+</html>

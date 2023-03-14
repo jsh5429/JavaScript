@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id ="title">DOM</h1>
+    <ol id = "list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ol>
+    <script>
+        /* DOM : 도큐먼트 오브젝트 모델 : 문서객체 모델 */
+        // html의 요소를 객체로 선택하거나 생성
+
+        // html 요소 선택
+        let title = document.querySelector("#title");
+        console.log(title);
+        let list = document.querySelector("#list");
+        // 현재 list는 Element속성으로 문서 객체에 들어간걸 알수있다.
+        console.log(list);
+        // console.dir은 문서 객체를 객체 형태로 출력해서 보여줌
+        console.dir(list);
+
+        //document.querySelector()를 사용하면 하나의 요소를 가져오고
+        // document.querySelectorAll()를 사용하면 여러 개의 요소를
+        // 배열에 넣어서 가져온다.
+        // document.getElement~, document.getElements~의
+        // 이름에 따라서 한 개의 요소 또는 배열로 들고 온다.
+    </script>
+</body>
+</html>
