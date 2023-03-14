@@ -7,12 +7,27 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- 아래에 태그에 접근해서 속성값 바꾸기 -->
+    <!-- innerHTML 사용 -->
     <h1 id ="title">DOM</h1>
+    <p class="class-name">내용을 작성하였습니다.</p>
     <ol id = "list">
         <li>1</li>
         <li>2</li>
         <li>3</li>
     </ol>
+    <a href="#">다음으로 연결</a>
+    <form id="form">
+        <label for="">이름</label>
+        <input type="text" id="name">
+    </form>
+
+    <ul id="list2">
+        <li>요소</li>
+        <li>요소</li>
+        <li>요소</li>
+        텍스트
+    </ul>
     <script>
         /* DOM : 도큐먼트 오브젝트 모델 : 문서객체 모델 */
         // html의 요소를 객체로 선택하거나 생성
@@ -31,6 +46,93 @@
         // 배열에 넣어서 가져온다.
         // document.getElement~, document.getElements~의
         // 이름에 따라서 한 개의 요소 또는 배열로 들고 온다.
+
+        let element = document.createElement("h1");
+        // 요소의 속성 추가/수정
+        // innerHTML 요소 안의 내용 변경
+        // .을 통해 속성에 접근
+        // .style 객체의 속성에 접근하여 변경
+        element.innerHTML = "원하는 값 작성";
+        element.id = "title2";
+        element.style.color = "red";
+
+        // querySelector를 이용한 요소 선택과
+        // innerHTML을 이용한 내부 내용 작성
+        let classElement = document.querySelector(".class-name");
+        classElement.innerHTML = "클래스를 통해 수정된 내용입니다.";
+        let title2 = document.querySelector("#title");
+        title2.innerHTML = "아이디를 들고 와서 수정된 내용입니다.";
+        title.innerHTML = "DOM";
+
+        // querySelectorAll() : 배열로 요소들을 들고 옴
+        let listLi = document.querySelectorAll("#list>li");
+        console.log(listLi);
+
+        // 인덱스 값으로 접근해서 바꾸기
+        listLi[0].innerHTML = "요소를 수정한 내용입니다.";
+        listLi[1].innerHTML = "요소를 수정한 내용입니다.";
+        listLi[2].innerHTML = "요소를 수정한 내용입니다.";
+
+        // for문을 통해서 내용을 바꾸기
+        // for - 배열 in / lenght
+        let array = ["HTML", "CSS", "JavaScript"];
+        for(let i=0; i<listLi.length; i++){
+        listLi[i].innerHTML = array[i];
+        }
+
+        // querySelector를 이용하여 <a>태그를 가져온 후
+        // href를 다음 홈페이지로 변경
+        /*let hyper = document.querySelector('a').setAttribute("href",
+        "https://www.daum.net/");
+        */
+
+
+        // querySelector를 이용하여 id가 form인 form태그에서
+        // input태그를 가져온 후 속성을 disabled=true로 변경
+        /*
+        let form1 = document.querySelector("#form>input").setAttribute("disabled", "true");
+        */
+
+        let a = document.querySelector("a");
+        a.href = "https://www.daum.net/";
+
+        let input = document.querySelector("#form>#name");
+        // querySelector()이용하여 요소를 찾미 못하면 null이 들어간다.
+        console.log(input);
+        // null에서 속성을 접근할 수 없기때문에 오류가 출력된다.
+        input.disabled = "true";
+
+
+        // DOM 요소의 스타일 속성
+        classElement.style.backgroundColor = "yellow";
+        title2.style.textDecoration = "line-through";
+
+        for(let i=0; i<listLi.length; i++){
+        listLi[i].style.color="blue";
+        }
+
+        // Node : DOM객체의 내용을 text/element/attr로 구분
+        // 객체를 글자와 태그와 속성으로 구분하는 단위
+        // .childNodes에서 태그와 글자로 구분되어 들어가 있음.
+        // title2.parentNode , title2.parentElement
+        // 둘다 결과가 같다. 편한걸 쓴다.
+        
+        // 노드로의 접근
+        // 부모 : parentNode, parentElement
+        // 자식 (각각 배열로 들어간다.): childNodes, children
+        // 첫번째, 마지막 자식 : firstChild, firstElementChild
+        // lastChild, lastElementChild
+        // 형제 : nextSibling, netxElementSibling / previousSibling
+        // 각 부모나 형제로 접근한 뒤에 그 속성에 다시 부모나 형제자식에게
+        // 접근 가능하다.
+        
+        // list의 2번재 li인 CSS 값을 출력
+        // 1) list 요소에 .을 통해 찾기
+        console.log("요소찾기", list.firstElementChild.nextElementSibling);
+
+        // 2) list 요소의 첫번쨰 자식을 변수로 저장한 후 찾기
+        let child = list.firstElementChild;
+        console.log("요소찾기2", child.nextElementSibling);
     </script>
 </body>
 </html>
