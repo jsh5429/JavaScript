@@ -43,7 +43,25 @@
             // input의 결과값인 p태그의 글자색 바꾸기
             // 속성값에 직접접근하여 바꿀때는 =으로 할당
             p.style.color="blue";
+            // 속성에 있는 값도 가져와서 사용할 수 있다.
+            // 확인 버튼을 누르면 blue라고 뜬다.
+            console.log(p.style.color);
+
+            //p태그의 이전 형제태그(button)에 접근해서
+            //button의 style의 color를 red로 수정하기.
+            //p.previousElementSibling.style.backgroundColor="red";
+            let button = p.previousElementSibling;
+            // 버튼을 클릭했을 때
+            // 버튼의 글자 색이 검정이라면 빨강
+            // 글자 색이 빨강이라면 검정으로
+            if(button.style.color=="red"){
+                button.style.color = "";
+            } else {
+                button.style.color = "red";
+            }
+            // 속성 값을 가져와 활용할 수 있다는 예
         }
+
     </script>
 </body>
 </html>

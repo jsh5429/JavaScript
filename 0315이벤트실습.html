@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- input태그와 button을 이용한 이벤트 연습 -->
+    <p>아래 숫자를 입력하면 구구단을 p태그로 출력해줍니다.</p>
+    <input id="dan" type="number"> 
+    <button onclick="gugudanPrint()"> 단 확인</button>
+    <div id="gugudan">
+        <p></p>
+    </div>
+
+    <script>
+        function gugudanPrint(){
+            let input =document.querySelector("#dan");
+            let p = document.querySelector("#gugudan>p");
+            for(let i=1; i<10; i++){
+                let result = input.value * i;
+                // +=가 아니라 =를 쓰고 정수+"문자열"이 아닌
+                // `${}`를 쓰면 마지막 x9의 결과만 나온다. 왜그러지?
+                p.innerHTML += input.value + "x" + i + "=" + result+"<br>";
+            }
+            p.innerHTML += "<br>";
+
+        }
+    </script>
+</body>
+</html>
