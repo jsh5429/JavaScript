@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./0315style.css">
+</head>
+<body>
+    <h1>수정하기 전 제목입니다</h1>
+    <div>
+        <ul>
+            <li>첫번째 내용입니다</li>
+            <li>두번째 내용입니다</li>
+            <li>세번째 내용입니다</li>
+            <li>네번째 내용입니다</li>
+        </ul>
+        <ol>
+            <li>첫번째 내용입니다</li>
+            <li>두번째 내용입니다</li>
+            <li>세번째 내용입니다</li>
+            <li>네번째 내용입니다</li>
+        </ol>
+    </div>
+    <div class="main">
+        <p><span>빈 공간</span> 입니다</p>
+    </div>
+    <div class="footer">
+        <p>푸터영역입니다</p>
+    </div>
+
+    <!-- 클래스 추가 제거 -->
+    <h2 class="blue-color">클래스가 추가되면 파란색이됩니다.</h2>
+    <script>
+        /*
+        let title = document.querySelector("#title");
+        let list1 = document.querySelector("#list1");
+
+        title.textContent = "DOM 이용한 수정";
+        title.style.color = "blue";
+        title.style.background = "lightgrey";
+
+        list1.removeChild(list1.firstElementChild);
+        let ulText = document.createTextNode("새로 추가한 노드요소입니다.");
+        list1.appendChild(ulText);
+
+        list2.firstElementChild.textContent = "내용을 바꾸었습니다.";
+        list2.removeChild(list2.firstElementChild.nextElementSibling);
+        list2.removeChild(list2.lastElementChild);
+
+        let main = document.querySelector("#main");
+        */
+
+        // DOM객체를 가져와서 HTML 내용 수정
+        // h1태그를 가져와서 수정
+        // 1) 값, 2) style - color/backgroundColor
+        let h1 = document.querySelector("h1");
+        h1.innerHTML = "DOM 이용한 수정";
+        h1.style.color = "blue";
+        h1.style.backgroundColor = "lightgray";
+
+        // ul 태그를 가져와서 수정
+        // 1) ul 태그의 첫번째 자식 삭제
+        // 2) ul 태그에 li 태그 자식 추가
+        let ul = document.querySelector("ul");
+        ul.firstElementChild.remove();
+        // 1) li태그, text 작성
+        let li = document.createElement("li");
+        li.innerHTML = "새로 추가한 노드요소입니다.";
+        ul.appendChild(li);
+
+        // ol 태그를 가져와서 삭제/수정
+        // 값 수정 : 첫 번째 자식
+        // 삭제 : 두 번째(childNodes/children)
+        //          네 번째(lastChild);
+        let ol = document.querySelector("ol");
+        ol.firstElementChild.innerHTML = "첫 번째 자식";
+        ol.firstElementChild.nextElementSibling.remove();
+        ol.lastElementChild.remove();
+
+        // div class = "main"의 p태그의 span태그
+        // style color = "red"
+        // id가 아니라 class였어 븅신 ㅠㅜㅠㅠ
+        let span = document.querySelector(".main span");
+        span.style.color = "red";
+
+        // span태그 통해 부모로 접근해서 p태그 복제
+        /*let p = document.querySelector(".main p");
+        let pClone = p.cloneNode(true);
+        let main = document.querySelector(".main");
+        main.appendChild(pClone);
+        */
+        let p = span.parentNode;
+        // 똑같은내용으로 수정하지 않고 복제해주려면,
+        // 동일한 내용을 수정없이 복제할 경우
+        // 변수에 넣지않고 작성 가능하다.
+        let main = document.querySelector(".main");
+        //main.append(p.cloneNode(true));
+        //main.append(p.cloneNode(true));
+
+        // 위의 내용을 for문으로 작성
+        for(let i=0; i<5; i++){
+            main.append(p.cloneNode(true));
+        }
+
+        // DOM객체 속성 중 classList
+        // 각 요소의 클래스를 추가 제거 가능
+        let h2 = document.querySelector(".blue-color");
+        h2.classList.remove("blue-color"); // 삭제
+        h2.classList.add("blue-color", "hi", "hello"); // 추가
+        h2.classList.toggle("blue-color"); // 토글
+
+        
+
+
+    </script>
+
+</body>
+</html>

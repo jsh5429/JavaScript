@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css.0315style.css">
 </head>
 <body>
     <!-- 아래에 태그에 접근해서 속성값 바꾸기 -->
@@ -133,6 +134,123 @@
         // 2) list 요소의 첫번쨰 자식을 변수로 저장한 후 찾기
         let child = list.firstElementChild;
         console.log("요소찾기2", child.nextElementSibling);
+
+        // 노드로의 접근 실습1
+        console.log("노드로의 접근1", title.childNodes);
+        // title.childNodes[0].nodeValue : nodeValue를 가져올수있다.
+        let list3 = document.querySelector("#list2>li");
+        console.log("노드로의 접근 1-2", list3.parentNode.nextElementSibling);
+        let ul1 = document.querySelector("#list2");
+        console.log("노드로의 접근1-3", ul1.firstChild.nextSibling);
+        
+
+        // 노드 접근 실습1
+        // h1태그의 childNode
+        let h1 = document.querySelector("h1");
+        console.log(h1.childNodes[0].nodeValue);
+
+        // li태그의 parentNode와 nextElementSibling
+        let li = document.querySelector("li");
+        console.log(li.parentNode.nextElementSibling);
+
+        // ul 태그의 firstchild와 nextSibling
+        let ul = document.querySelector("ul");
+        // 요소가 아니라 노드로 접근 때문에 firstChild는
+        // li가 아니라 text이다. 따라서 firstChild의 nextSibling은
+        // li가 된다.
+        console.log(ul.firstChild.nextSibling);
+
+        // 노드 관리 - 생성과 추기
+        let element2 = document.createElement("h2");
+        // 속성과 텍스트 생성
+        let attr = document.createAttribute("style");
+        let text = document.createTextNode("h2태그생성");
+
+        // 속성 추가
+        element2.setAttributeNode(attr);
+        // 글자 추가 : textNode이므로 appendChild를 통해 추기
+
+        element2.appendChild(text);
+        // body에 추가
+        let body = document.querySelector("body");
+        body.appendChild(element2);
+
+        // 속성고 태그 안의 글자의 경우
+        // DOM 속성에 접근해서 값을 바꿀 수 있다.
+        element2.style.color="blue";
+        element2.innerHTML = "값 작성";
+        element2.textContent = "값 수정";
+
+        // 동일한 객체를 다른 곳에 추가
+        // ul.appendChild(element2)를 하면 element2가
+        // ul 리스트 안에 들어가게된다.
+        ul.appendChild(element2);
+        // body에 append되어있던 element2가 ul로 append되어
+        // 이동
+        // 동일한 객체는 html 문서에서 한번만 사용가능
+        // 즉 element2는 html에 문서에 한번 더 추가해도 나오지않는다.
+
+        // 동일한 객체를 여러번 html 문서에 사용하고 싶을 때는
+        // 노드를 복제한다.
+        /* 객체(배열)을 복제하는 경우와 비슷하다. 
+        객체는 동일한 새로운 객체를 만들 때 메소드를 사용한다.*/
+        let element3 = element2.cloneNode(true);
+        // element2의 복제 element3를 body에 다시 넣는다.
+        body.appendChild(element3);
+        element3.innerHTML = "요소3";
+        
+        // 노드의 삭제
+        // ul태그의 첫번쨰 자식 li 삭제 > return DOM
+        ul.removeChild(ul.firstElementChild);
+        // ul태그의 첫번째 자식으로 들어가서 자기 자신 삭제
+        // return 값 없음. 따라서 지운 뒤에 복구를 생각하고있다면
+        // 위의 방법이 효율적
+        ul.firstElementChild.remove();
+        
+        // 노드의 관리 실습 1
+        // 생성, 추가
+        let p = document.createElement('p');
+        body.appendChild(p);
+        
+        let pText = document.createTextNode("textnode를 이용한 텍스트입니다.");
+        p.appendChild(pText);
+        // textnode로 만든 pText도 단순 복제가 되지 않기 때문에
+        // body에 pText를 append하면 p태그의 pText가 사라진다.
+        // body.appendChild(pText);
+        // 요소의 속성값 수정
+        p.style.color = "blue";
+        /* 내 오답
+        let pColor = document.createAttribute(p.style);
+        p.setAttributeNode(pColor);
+        아니 setAttributeNode 쓰라매~!
+        */
+        pText.nodeValue = "<span>textNode</span>의 nodeValue접근하여 수정";
+        // innerHTML과 textNode의 차이
+        // textContent로 넣어도 죄다 글자로 들어간다.
+        // textNode는 그 안에 들어가는 내용은 모두 글자로 들어간다.
+        // textContent도 동일하게 모두 글자로 들어간다.
+        // innerHTML은 그 안에 태그를 작성하면 태그는 반영해서 사용한다.
+
+        // 노드의 관리 실습 2
+        // 제거
+        // p태그의 style 속성 제거. 지금 아래 코드때문에
+        // 임의로 주석 상태로 바꿔서 지운 상태임.
+        // p.removeAttribute("style");
+        ul.removeChild(ul.firstElementChild);
+        ul.remove();
+
+        // 노드의 관리 실습 3
+        // 복제
+        // h1 태그를 복제하여 body에 바로 추가
+        // 변수에 할당하지 않고 추가하면 자바스크립트에서 제어할 수 없다.
+        // 다시 document.querySelector를 통해 가져와서 제어할 수 있다.
+        body.appendChild(h1.cloneNode(true));
+        // p 태그를 복제하여 body에 추가
+        let cloneP = p.cloneNode(true);
+        body.appendChild(cloneP);
+        // 변수에 할당하면 자바스크립트로 태그에 관여할 수 있다.
+        cloneP.removeAttribute("style");
+
     </script>
 </body>
 </html>

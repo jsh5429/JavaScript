@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML 태그에서 어떤 이벤트가 발생 -->
+    <!-- onclick : 태그를 클릭했을 때 실행 -->
+    <h1 onclick="printConsole('h1')">이벤트</h1>
+    <button onclick="alert('버튼을 클릭했습니다.')">클릭하세요</button>
+    <p onmouseenter="printConsole('p')">마우스를 올리세요</p>
+
+    <!-- 요소에 속성으로 등록 실습1 -->
+    <p>값을 넣어주세요</p>
+    <input type="text" id="input" value="값" size="10" placeholder="값 입력">
+    <!-- button에 클릭 이벤트와 함수 작성 -->
+    <button onclick="printP()">확인</button>
+    <p id = "textprint"></p>
+    <script>
+        /* HTML태그에서 이벤트가 발생했을 때 실행할 내용 작성 */
+        // 함수로 만들어서 onclick이벤트에 전달
+        function printConsole(tag) {
+            console.log(tag+"를 눌렀습니다.");
+        }
+
+        function submit(){
+            let input = document.getElementById('input').value;
+            document.getElementById("textprint").innerHTML = input;
+        }
+
+        // submit()대신 prntP() onclick에 할당하면 똑같이 작동한다.
+        function printP() {
+            // input 태그 가져오기
+            let input =document.querySelector("#input");
+            // p태그를 가져오기
+            let p = document.querySelector("#textprint");
+            // p태그에 innerHTML값을 input.value로 할당
+            p.innerHTML = input.value;
+
+            // input의 결과값인 p태그의 글자색 바꾸기
+            // 속성값에 직접접근하여 바꿀때는 =으로 할당
+            p.style.color="blue";
+        }
+    </script>
+</body>
+</html>
