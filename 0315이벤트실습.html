@@ -22,8 +22,12 @@
             for(let i=1; i<10; i++){
                 let result = input.value * i;
                 // +=가 아니라 =를 쓰고 정수+"문자열"이 아닌
-                // `${}`를 쓰면 마지막 x9의 결과만 나온다. 왜그러지?
-                p.innerHTML += input.value + "x" + i + "=" + result+"<br>";
+                // `${}`를 쓰면 마지막 x9의 결과만 나온다. 왜 그러지?
+                // 템플릿 문자열도 어짜피 문자열 아닌가.. 아님 =를 써서 그런가
+                //p.innerHTML += input.value + "x" + i + "=" + result+"<br>";
+                // 실험해보니 +=를 써야한다!! =는 안된다.
+                // 할당만 시키니 자꾸 뒤의 계산 값이 p태그의 내용을 덮어 씌워버리나보다.
+                p.innerHTML += `${input.value}x${i} = ${result}<br>`;
             }
             p.innerHTML += "<br>";
 
