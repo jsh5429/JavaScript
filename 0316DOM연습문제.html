@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title" class="title">HTML태그와 DOM객체</h1>
+    <img src="./img/bird.jpg" alt="새이미지" class="image" width="100">
+    <form action="" id="form">
+        <a href="https://unsplash.com/ko" target="_blank">언플래쉬에서 가져온 이미지입니다.</a>
+        <br>
+
+        <p>이름을 입력해 주세요</p>
+        <input type="text" id="input" required>
+        <br>
+        <input type="radio" name="gender" id="radio1" value="female"><span>여성</span>
+        <input type="radio" name="gender" id="radio1" value="male"><span>남성</span>
+        <br>
+        
+        <p>좋아하는 과일을 중복해서 고르세요</p>
+        <input type="checkbox" id="checkbox1" name="fruit" value="apple" checked><span>사과</span>
+        <input type="checkbox" id="checkbox2" name="fruit" value="orange"><span>오렌지</span>
+        <input type="checkbox" id="checkbox3" name="fruit" value="strawberry"><span>딸기</span>
+        <input type="checkbox" id="checkbox4" name="fruit" value="peach" ><span>복숭아</span>
+        <br>
+
+        <input type="date" name="" id="date" min="2023-03-16">
+        <br>
+
+        <input type="submit" id="submit" value="제출">
+    </form>
+    <hr>
+
+    <button id="btn2" onclick="printTest()">버튼을 클릭하면 버튼 안의 글자가 바뀝니다.</button>
+    <p id="p1" onmouseenter="changeColor1()">마우스를 올리면 글자가 빨간색으로 바뀝니다.</p>
+    <p id="p2" onmouseleave="changeColor2()">마우스를 빠져나가면 글자가 파란색으로 바뀝니다.</p>
+    <p id="p3" onmouseenter="changeColor3()" onmouseleave="changeColor4()">마우스를 올리면 글자가 빨간색으로, 마우스가 빠져나가면 파란색으로 바뀝니다.</p>
+    <hr>
+
+    <!-- input태그에 onfouse, onblur  -->
+    <input type="text" id="input2" onblur="inputColor()" onfocus="inputColor2()">
+    <button>확인</button>
+    <script>
+        // id가 input인 input 태그의 required / value 속성
+        let input1 = document.querySelector("#input");
+        console.log(`${input1.required}`);
+        console.log(`${input1.value}`);
+
+        // id가 title인 h1태그의 innerHTML 속성
+        let h1 = document.querySelector("#title");
+        console.log(`${h1.innerHTML}`);
+
+        // id가 radio1인 input태그의 checked / value 속성
+        let radio = document.querySelector('#radio1');
+        console.log(`${radio.checked}`);
+        console.log(`${radio.value}`);
+
+        // id가 checkbox1인 input태그의 value 속성
+        let checkbox1 = document.querySelector('#checkbox1');
+        console.log(`${checkbox1.value}`);
+
+        // id가 date인 input태그의 value 속성
+        // * 값을 넣고도 확인하기
+        let date = document.querySelector('#date');
+        console.log(`${date.value}`);
+
+        // class가 image인 image태그의 src 속성
+        let image = document.querySelector('.image');
+        console.log(`${image.src}`);
+
+        // body의 classList 속성
+        let body = document.querySelector('body');
+        console.log(body.classList);
+
+        // 버튼 안에 글자가 안녕하세요로 바뀌는 함수 작성
+        let button = document.querySelector("#btn2");
+        function printTest(){
+            let text = "안녕하세요";
+            button.innerHTML = text;
+        }
+
+        // p태그에 마우스를 올렸을 때 글자가 빨간색으로 변하는 함수
+        let p1 = document.querySelector('#p1');
+        function changeColor1(){
+            p1.style.color = "red";
+        }
+
+
+        // p 태그에 마우스를 빠져나갔을 때 글자가 파란색으로 바뀐다.
+        // * 처음에는 검정색
+        let p2 = document.querySelector('#p2');
+        function changeColor2(){
+            p2.style.color="blue";
+        }
+
+        // p태그에 마우스가 올라가고 빠져나갔을 때 마다 색이 변하는 함수.
+        // * 처음에는 검정색
+        let p3 = document.querySelector('#p3');
+        function changeColor3() {
+            p3.style.color="red";
+        }
+
+        function changeColor4() {
+            p3.style.color="blue";
+        }
+
+        
+        // onblur() - inputColor()
+        function inputColor(){
+            let input = document.querySelector("#input2");
+            input.style.backgroundColor = ""
+        }
+
+        function inputColor2(){
+            let input = document.querySelector("#input2");
+            input.style.backgroundColor = "gray"
+        }
+
+
+    </script>
+</body>
+</html>
