@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .on{
+            /* text-decoration은 전환효과가 적용되지않는다. */
+            text-decoration: line-through;
+            background-color: black;
+            /* 자바스크립트로 class이름을 추가할 때 전환효과 사용 */
+            transition: background-color 0.5s;
+        }
+
+        /* CSS만 사용해서 체크 */
+        .list>li>input[type="checkbox"]:checked+span{
+            color: gray;
+            text-decoration: underline wavy;
+            /* 전환효과 사용가능 */
+            transition: all 0.5s;
+        }
+
+        .img{
+            width: 300px;
+            background-image: url(./img/bird.jpg);
+            height: 300px;
+            background-size: cover;
+        }
+        .change-img{
+            background-image: url(./img/rose.jpg);
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트 실습</h1>
+    <p id="p1">눌러주세요</p>
+    <hr>
+    <!-- 체크리스트 -->
+    <ol>
+        <li id="first_list">
+            <input type="checkbox" name="" id="checkbox">
+            첫번째 리스트입니다.
+        </li>
+    </ol>
+
+    <ol id ="checklist">
+        <li><input type="checkbox">첫번째</li>
+        <li><input type="checkbox">두번째</li>
+        <li><input type="checkbox">세번째</li>
+    </ol>
+
+    <ul class="list">
+        <li><input type="checkbox"><span>첫번째</span></li>
+        <li><input type="checkbox"><span>두번째</span></li>
+    </ul>
+
+    <!-- div태그 안에 이미지 넣어서 사용
+        이때 이미지를 클릭했을 때 다른 이미지로 바뀌기
+        CSS 백그라운드 이미지 바꾸기(classList사용)
+    -->
+    <div id="img-wrap" class="img">
+    </div>
+    <script>
+        // 이벤트 리스너를 이용한 이벤트 추가
+        const p1 = document.querySelector("#p1");
+        
+        // 한번만 사용할 것 같을 때엔 익명함수를 쓰는게 효율적
+        // click을 한번했냐 두번했냐에 변화조건 초점을 맞추치 말고
+        // 클릭한 뒤 변한 태그의 내용변화에 초점을 맞추어
+        // 조건문을 작성하면된다. 클릭한뒤에 a상태로 바뀌었으면
+        // b로 바꾸라, 클릭을 안했다면 b상태이니 a상태로 바꾸라 등등..
+        p1.addEventListener("click", function(e){
+            if(e.target.innerHTML != "숨겨진 단어입니다."){
+                e.target.innerHTML = "숨겨진 단어입니다.";
+                e.target.style.color = "red";
+            } else {
+                e.target.innerHTML = "눌러주세요";
+                e.target.style.color = "";
+            }
+        });
+
+
+        // 체크리스트 input태그 클릭했을 때
+        // li태그 색 바꾸기
+        const checkbox = document.querySelector("#checkbox");
+        const li = document.querySelector("#first_list");
+
+        // li태그의 색상을 lightgrey로 수정
+        checkbox.addEventListener("click", function(e){
+            if(e.target.checked == true){
+                li.style.color = "lightgrey";
+            } else if(e.target.checked == false){
+                li.style.color = "";
+            }
+        })
+
+        // 강사님 코드
+        function check(e){
+            const li = e.target.parentNode;
+            // e.target의 checked가 true일 때 색상 바꿈
+            if(e.target.checked){
+                li.style.color = "lightgray";
+                // classList로 접근 / add()함수를 사용
+                li.classList.add("on");
+            } else {
+                li.style.color = "";
+                // classList 접근 / remove()함수
+                li.classList.remove("on");
+            }
+        }
+
+        // 체크리스트 li요소 배열 들고와서 동일한 이벤트 추가
+        const checklist = document.querySelectorAll("#checklist>li>input[type='checkbox']");
+        
+        for(let i=0; i<checklist.length; i++){
+                checklist[i].addEventListener("click", check);
+            }
+
+        /*const img = document.querySelector("#img-wrap");
+        img.addEventListener("click", function(e){
+            e.target.classList.add("trans");
+        }); */
+
+        // img를 클릭했을 때 백그라운드 그림을 바꿈
+        const img = document.querySelector("#img-wrap");
+        img.addEventListener("click", function(e){
+            // 클릭했을 때 새로운 클래스 추가
+            // 클릭할때마다 바꾸려면 add()말고 toggle()
+            // 클래스 이름을 토글한다.
+            e.target.classList.toggle("change-img");
+        })
+        
+    </script>
+</body>
+</html>

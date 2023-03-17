@@ -107,7 +107,7 @@
             p3.style.color="blue";
         }
 
-        
+
         // onblur() - inputColor()
         function inputColor(){
             let input = document.querySelector("#input2");
@@ -119,7 +119,15 @@
             input.style.backgroundColor = "gray"
         }
 
+        // let과 달리 const로 작성한 변수는 그 값을 재할당할 수 없다.
+        // 유일값
+        const p2 = document.querySelector("#p2");
+        p2.addEventListener("");
 
+        // 이벤트 객체를 활용한 함수 작성
+        function printText(event){
+            console.dir(event);
+        }
     </script>
 </body>
 </html>
