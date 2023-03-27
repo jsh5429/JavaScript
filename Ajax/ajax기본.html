@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>기본 브라우저 실행</h1>
+    <ol>
+        <li>이벤트 발생</li>
+        <li>브라우저에서 HttpRequest 생성 및 요청</li>
+        <li>서버에서 HttpRequest 처리</li>
+        <li>데이터 가져와서 웹페이지 다시 로딩</li>
+    </ol>
+    <h3>Ajax 실행</h3>
+    <p>비동기 자바스크립트</p>
+    <ol>
+        <li>이벤트 발생</li>
+        <li>자바스크립트에서 HttpRequest 객체 생성 및 요청</li>
+        <li>서버에서 Ajax요청 처리</li>
+        <li>데이터를 가져와서 웹페이지 일부분 로딩</li>
+    </ol>
+    <h2>a태그를 이용한 값 가져오기 - 기본 브라우저 실행 </h2>
+    <a href="./data.txt">text값</a>
+
+    <h2>Ajax를 이용한 값 가져오기</h2>
+    <button id="ajax-btn">ajax를 이용한 값</button>
+    <p id="ajax-text"></p>
+    <h2>웹에서 값을 가져오는 형태 JSON</h2>
+    <p>
+        자바스크립트의 객체와 동일한 모양을 하고있고
+        웹에서 값을 전달할 때 사용하게 된다.
+    </p>
+
+    <h3>a태그로 들고온 JSON</h3>
+    <a href="./data.json">JSON 값</a>
+
+    <h3>Ajax를 이용하여 들고온 JSON</h3>
+    <button id="ajax-btn-json">Ajax JSON 값</button>
+    <p id="ajax-json"></p>
+
+    <script>
+        //버튼을 눌렀을 때 ajax 실행
+        // 1) ajax가 실행되는 순서
+
+        // HTTP 요청하기위한 객체 생성
+        const req = new XMLHttpRequest();
+        // 객체 확인
+        console.dir(req);
+        // readyState를 통해서 순서를 확인할 수 있다.
+        console.log(req.readyState);
+
+        // 서버에 요청
+        req.open("GET", "./data.txt");
+        // 요청 전송
+        req.send();
+        // 응답확인
+        // > 서버에 요청을 전송하고 바로 실행하면 값이 없다
+        // 서버에 요청 전송하고 값을 받아오는데 시간이 걸리기 때문
+        // : 값을 바로 받아오지 않고 값이 있을 때 response실행
+        console.log(req.response);
+
+        // onreadystatechange : 메소드를 수정해서 사용
+        // readystate의 값이 바뀔때마다 실행될 내용작성
+        req.onreadystatechange = function() {
+            // this는 req객체를 가져옴
+            console.log("객체상태 : "+this.readyState);
+            console.log("응답번호" + this.status);
+            // 객체상태가 4, 응답번호가 200일때 값 호출
+            if(this.readyState == this.DONE && this.status == 200){
+                console.log("값 : "+this.response);
+            }
+        }
+
+        // 버튼 객체를 들고와서 이벤트 작성
+        // 클릭 이벤트
+        // ajax 실행
+        const ajaxBut = document.querySelector("#ajax-btn");
+        ajaxBut.addEventListener("click", function(){
+            /* 작성한 후 버튼 클릭하여 확인 */
+            // XMLHTTP객체 생성
+            const req1 = new XMLHttpRequest();
+            // 서버요청 "./data.txt"
+            req1.open("GET", "./data.txt");
+            // 요청 전송
+            req1.send();
+            // onreadyStatechange 메소드 수정하여 값 확인
+            req1.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                console.log("값 : "+this.response);
+                console.log("자료형확인 : ", typeof(this.response));
+                // 새로고침없이 값을 들고온다. 
+                // 사용자가 보면 미리 가져온 값을 가져오듯이, 
+                // 좀더 빠르게 결과를 보는 것같이 해준다.
+                // 값을 Dom에 넣어서 사용가능.
+                const ajaxText = document.querySelector("#ajax-text");
+                ajaxText.innerHTML = this.response;
+                }
+            }
+        })
+
+        // 버튼을 클릭했을 때
+        // ajax를 이용해서 JSON 데이터를 들고오기
+        const ajaxBtnJson = document.querySelector("#ajax-btn-json");
+        ajaxBtnJson.addEventListener("click", function(){
+            const req = new XMLHttpRequest();
+            req.open("GET", "./data.json");
+            req.send();
+            req.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    // 받아온 값은 항상 response에 들어가있다.
+                    console.log("JSON 값", req.response);
+                    // req.response로 받아온 값은 항상 문자열
+                    // JSON으로 받아온 값은 메소드를 통해 변환해서 사용
+                    console.log(typeof(req.response));
+
+                    // JSON.parse를 통해 문자열에서 JSON(자바스크립트 객체)
+                    // 가져올 수 있음
+                    const data = JSON.parse(req.response);
+                    console.log(data);
+                    console.log(typeof(data));
+                    // 자바스크립트의 객체로 가져올 경우
+                    // .을통해 그 안에 있는 값을 원래 자료형으로 들고올 수 있다.
+                    console.log(data.id);
+                    console.log(data.text);
+                    console.log(data.list);
+                    console.log(data.list.pop());
+                    console.log(data.list);
+                    console.log(data.object);
+                    // 실제 객체 안의 속성의 자료형을 
+                    // 그대로 들고올 수 있으면 훨씬 효율적
+                    // JSON은 이것이 가능하다!
+                    // ... 자바스크립트자체서 만든 객체에서는 불가능하나?
+                    // 모르겠음...
+
+                    // 실습
+                    // id = ajax-json 인 p태그에 "홍길동"을 출력하세요.
+                    const textJson = document.querySelector("#ajax-json");
+                    textJson.innerHTML = data.object.name;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

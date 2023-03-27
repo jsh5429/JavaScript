@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>FetchAPI와 Async-await</h1>
+    <p>fetch를 쓰면 간단하게 response의 값을 가져올 수 있다.</p>
+    <p>
+        대신에 then을 이용하여 계속 작성해야한다.
+        이를 개선하기 위해 Async-await를 이용해서 작성할 수 있다.
+    </p>
+    <button id="fetch-btn">패치버튼</button>
+    <button id="fetch-btn2">
+        버튼을 누르면 p태그의 값 수정 : 부산
+    </button>
+    <p id="fetch-json"></p>
+    <script>
+        // async - await
+        // await를 쓰기 위해선 반드시 async가 달린 function에서
+        // 가능하다.
+        // async : 비동기라는 뜻
+        // 함수의 앞에 붙여서 비동기로 사용
+        // await : 기다린다라는 뜻
+        // 실행할 메소드나 함수 앞에 붙여서
+        // 값을 가져올 때까지 기다리는 역할을 하게된다.
+        // 훨씬 더 직관적으로 내용을 볼 수 있다.
+        async function doFetch(){
+            // 여기서 await는 첫번쨰 then을 통해 가져온 값을 의미
+            const promise = await fetch('./data.txt')
+            // 두번쨰 then을 통해 가져온 값
+            const response = await promise.text();
+            console.log(response);
+        }
+        doFetch();
+
+        // fetchAPI를 이용해서 JSON가져오기
+        // 익명함수일 경우 함수 앞에 붙이기
+        let doJson = async function(){
+            const promise = await fetch('./data.json');
+            // await을 빼면 promist값이 그대로 나온다.
+            // 반드시 붙여야 json 안의 객체값에 접근할 수 있다.
+            const response = await promise.json();
+            console.log(response);
+        }
+        doJson();
+
+        // 작성한 비동기함수를 이벤트에 추가
+        const fetchBtn = document.querySelector("#fetch-btn");
+        fetchBtn.addEventListener("click", doFetch);
+
+
+        // 연습
+        const fetchBtn2 = document.querySelector("#fetch-btn2");
+        fetchBtn2.addEventListener("click", async function(){
+            const promise = await fetch('./data.json');
+            // 값이 잘못되어 오류가 났을 때 : 함수 종료(return)
+            if(!promise.ok){
+                console.log("값이 존재하지않음", promise.ok);
+                return -1;
+            }
+            const p = document.querySelector("#fetch-json");
+            // json객체 자체를 response에 넣는다는 뜻인듯
+            // 그럼 json파일 안의 내용이 response에 들어간다는 뜻인가.
+            // json파일 안에 객체가 여러개면 어떻게되는?
+
+            // 값을 가져와서 사용
+            const response =await promise.json();
+            p.innerHTML = response.object.adress;
+        });
+    </script>
+</body>
+</html>

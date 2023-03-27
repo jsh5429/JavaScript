@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>FetchAPI를 이용</h1>
+    <p>http객체를 생성하는 대신에 FetchAPI를 통해 접근</p>
+
+    <script>
+        //fetchAPI를 이용해 접근
+        // httprequest~객체 없이, open접근 없이 바로 접근
+        // fetch 안에 url을 넣으면 바로 get요청을 날려준다.
+        fetch('./data.txt')
+        // then 안에 함수를 이용해서 response 접근
+            .then(function(response){
+                // response의 안에 http값이 들어가있음
+                console.log(response);
+                // then은 앞의 return 값을 전달 받기에
+                // response.text()을 이용해서 값 전달
+                // 즉, response.text()없이는 console.log로
+                // console에 출력도 안된다.
+                return response.text();
+                /*
+                const data = response.text();
+                console.log(data);
+                // 출력가능. 근데 앞에 [[]]형태로 요상한게
+                // 붙는다. 당장 꺼내 쓸수 없다는 뜻?
+                // 어쩄든 then으로 가져오는게 일반적인듯.
+                */
+            }).then(function(text1){
+                // then을 두번쓰는 이유는  
+                // 처음에 then에서 promise로 만들어졌기에
+                // 그 값을 사용하기 위해서 한번 더 then을 사용 
+                console.log(text1);
+            })
+
+            console.log("fetch 이전에 작성된 내용입니다.");
+            // FetchAPI 화살표 함수로 간단하게 사용
+            // 위의 흐름과 동일.
+            // fetch는 비동기식이기 때문에
+            // console.log들이 먼저 실행되고
+            // fetch가 가장 나중에 실행된다.
+            // Fetch API는 비동기이므로 실행 후 값을
+            // 바로 가져오지 않는다.
+            // 비동기, 동기에 대해서 좀더 공부필요할듯
+            fetch("./data.txt")
+                .then(promise => promise.text())
+                .then(response=> console.log(response));
+
+            console.log("fetch 이후에 작성된 내용입니다.");
+
+            //fetchAPI를 통해서 data1.txt파일을 가져와서
+            //console.log에 출력
+
+            fetch("./data1.txt")
+                .then(promise1 => promise1.text())
+                .then(response1 =>console.log(response1));
+    </script>
+    
+</body>
+</html>
