@@ -104,6 +104,7 @@
 
         /* Date 객체 - 날짜/시간 */
         let today = new Date();
+        // 분
         document.write(`<p>${today.getMinutes()}</p>`);
 
         // 날짜. getMonth()를 쓸때는 +1을 써준다.
@@ -118,6 +119,8 @@
         // getTime : 시작시간과 끝 시간을 이용해서 전체걸린시간체크
         document.write(`<p${today.getTime()}</p>`);
 
+        document.write("<hr>");
+
         // for문을 실행할 때 걸리는 시간
         let startTime = new Date();
         for (let i =0; i<100; i++){
@@ -125,19 +128,21 @@
         }
         let endTime= new Date();
         document.write(`<p>${endTime - startTime}</p>`);
+        document.write("<hr>");
 
         // date 객체의 set 메소드
         // 디폴트값인 2023년을 2020년으로 바꿔버린다.
         today.setFullYear(2020);
         document.write(`<p>${today.getFullYear()}</p>`);
 
-        // UTC 날짜
+        document.write("<hr>");
 
+        // UTC 날짜
         document.write(`<p>${today.getUTCHours()}시
             ${today.getUTCMinutes()}분</p>`);
+            document.write("<hr>");
 
         // Date 객체 실습
-
         let today2 = new Date();
 
         // 랜덤한 수를 정수로 바꿔서 사용하기
